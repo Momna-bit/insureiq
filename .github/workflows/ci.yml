@@ -1,0 +1,49 @@
+name: InsureIQ CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run health check test
+        run: |
+          python -c "
+          import pickle, os
+          assert os.path.exists('models/fraud_model.pkl'), 'Model missing!'
+          with open('models/fraud_model.pkl', 'rb') as f:
+              model = pickle.load(f)
+          print('Model loaded successfully')
+          import numpy as np
+          test = np.array([[15000, 2, 1, 0, 0, 0]])
+          score = model.predict_proba(test)[0][1]
+          print(f'Test fraud score: {score:.4f}')
+          assert 0 <= score <= 1, 'Score out of range!'
+          print('All tests passed!')
+          "
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t insureiq:latest .
+
+      - name: Verify build
+        run: echo "Docker build successful!"
