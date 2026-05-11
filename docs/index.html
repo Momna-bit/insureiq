@@ -1,12 +1,366 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>InsureIQ — Momna Ali</title>
-<script>window.location.replace('dashboard.html');</script>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>InsureIQ — Momna Ali</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/><style>:root{--bg:#03080f;--surface:#080f1a;--border:rgba(120,200,255,0.08);--electric:#00d4ff;--gold:#c8a96e;--green:#00ff94;--red:#ff4d6d;--text:#8da8c0;--bright:#e8f4ff;--dim:#3a5570;}*{box-sizing:border-box;margin:0;padding:0;}body{background:var(--bg);font-family:'DM Mono',monospace;color:var(--text);overflow-x:hidden;}nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(3,8,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--bright);}.nav-logo span{color:var(--electric);}
+.nav-right{display:flex;gap:12px;}
+.nav-btn{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--bg);background:var(--electric);padding:8px 18px;border-radius:100px;border:none;font-family:'DM Mono',monospace;cursor:pointer;text-decoration:none;}
+.nav-gh{color:var(--electric);background:transparent;border:1px solid rgba(0,212,255,0.3);}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;z-index:1;}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--electric);background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.15);padding:7px 16px;border-radius:100px;margin-bottom:28px;}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--electric);animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,15vw,120px);font-weight:300;line-height:0.9;letter-spacing:-0.04em;color:var(--bright);margin-bottom:8px;}
+h1 em{font-style:italic;color:var(--electric);}
+.sub{font-family:'Cormorant Garamond',serif;font-size:clamp(14px,4vw,22px);color:var(--gold);letter-spacing:0.1em;margin-bottom:24px;}
+.desc{font-size:clamp(11px,2.5vw,13px);line-height:2;color:var(--text);max-width:560px;margin:0 auto 40px;}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:52px;}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--electric);color:var(--bg);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:14px 32px;border-radius:100px;border:none;font-family:'DM Mono',monospace;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.3s;}
+.btn-outline{background:transparent;color:var(--text);border:1px solid rgba(120,200,255,0.22);}
+.stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,6vw,40px);font-weight:700;color:var(--electric);line-height:1;}
+.stat-label{font-size:8px;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-top:4px;}
+section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:80px 24px;}
+hr{position:relative;z-index:1;border:none;border-top:1px solid var(--border);margin:0;}
+.ey{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--electric);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.ey::after{content:'';flex:1;height:1px;background:var(--border);}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,6vw,52px);font-weight:300;color:var(--bright);line-height:1.1;margin-bottom:16px;letter-spacing:-0.02em;}
+h2 em{color:var(--electric);font-style:italic;}
+.body{font-size:clamp(11px,2vw,13px);line-height:2;color:var(--text);max-width:660px;}
+.prob{background:linear-gradient(135deg,rgba(255,77,109,0.06),rgba(200,169,110,0.06));border:1px solid rgba(255,77,109,0.15);border-radius:16px;padding:28px 24px;margin-top:36px;display:flex;align-items:flex-start;gap:24px;flex-wrap:wrap;}
+.prob-num{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,10vw,80px);font-weight:700;color:var(--red);line-height:1;}
+.prob-text h3{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,3vw,22px);font-weight:600;color:var(--bright);margin-bottom:8px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:28px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;position:relative;overflow:hidden;transition:all 0.3s;}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity 0.3s;}
+.card:hover{border-color:rgba(120,200,255,0.22);transform:translateY(-3px);}
+.card:hover::after{opacity:1;}
+.cb::after{background:var(--electric);}.cg::after{background:var(--gold);}.cv::after{background:var(--green);}
+.ci{font-size:24px;margin-bottom:14px;}
+.ct{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,3vw,20px);font-weight:600;color:var(--bright);margin-bottom:10px;}
+.cc{font-size:clamp(11px,2vw,12px);line-height:1.9;color:var(--text);}
+.wide{grid-column:1/-1;}
+
+/* DASHBOARD EMBED */
+.dash-wrap{background:#F0F4F8;border-radius:20px;overflow:hidden;border:1px solid rgba(120,200,255,0.15);box-shadow:0 20px 60px rgba(0,0,0,0.4);margin-top:40px;}
+.dash-hdr{background:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E2E8F0;font-family:'Inter',sans-serif;}
+.dl{font-size:15px;font-weight:700;color:#0F172A;}.dl span{color:#0EA5E9;}
+.dlive{display:flex;align-items:center;gap:6px;background:#ECFDF5;border:1px solid #A7F3D0;color:#059669;font-size:11px;padding:5px 12px;border-radius:100px;}
+.dd{width:6px;height:6px;border-radius:50%;background:#10B981;animation:blink 2s infinite;}
+.dash-body{padding:20px;}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px;}
+.kpi{background:#fff;border-radius:12px;padding:18px 20px;border:1px solid #E2E8F0;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:12px 12px 0 0;}
+.kb::before{background:linear-gradient(90deg,#0EA5E9,#38BDF8);}
+.kr::before{background:linear-gradient(90deg,#EF4444,#F87171);}
+.ka::before{background:linear-gradient(90deg,#F59E0B,#FCD34D);}
+.kg::before{background:linear-gradient(90deg,#10B981,#34D399);}
+.kl{font-size:10px;font-weight:500;color:#64748B;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;font-family:'Inter',sans-serif;}
+.kv{font-size:28px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px;font-family:'Inter',sans-serif;}
+.kv.b{color:#0EA5E9;}.kv.r{color:#EF4444;}.kv.a{color:#F59E0B;}.kv.g{color:#10B981;}
+.ks{font-size:10px;color:#94A3B8;font-family:'Inter',sans-serif;}
+.cr{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-bottom:16px;}
+.br{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.dc{background:#fff;border-radius:12px;padding:18px 20px;border:1px solid #E2E8F0;}
+.dt{font-size:12px;font-weight:600;color:#0F172A;font-family:'Inter',sans-serif;}
+.ds{font-size:10px;color:#94A3B8;margin-bottom:14px;font-family:'Inter',sans-serif;}
+.risk-badge{padding:2px 8px;border-radius:100px;font-size:9px;font-weight:600;font-family:'Inter',sans-serif;}
+.rh{background:#FEF2F2;color:#EF4444;}.rm{background:#FFFBEB;color:#F59E0B;}.rl{background:#ECFDF5;color:#10B981;}
+.mt{width:100%;border-collapse:collapse;}
+.mt th{font-size:9px;font-weight:600;text-transform:uppercase;color:#94A3B8;padding:0 6px 10px 0;text-align:left;border-bottom:1px solid #F1F5F9;font-family:'Inter',sans-serif;}
+.mt td{font-size:11px;color:#334155;padding:8px 6px 8px 0;border-bottom:1px solid #F8FAFC;font-family:'Inter',sans-serif;}
+.sl{display:flex;flex-direction:column;gap:11px;}
+.sh{display:flex;justify-content:space-between;margin-bottom:5px;}
+.sn{font-size:11px;color:#334155;font-weight:500;font-family:'Inter',sans-serif;}
+.st{height:6px;background:#F1F5F9;border-radius:100px;overflow:hidden;}
+.sf{height:100%;border-radius:100px;}
+
+/* GITHUB SECTION */
+.gh-section{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px;}
+.gh-hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px;}
+.gh-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,4vw,32px);font-weight:600;color:var(--bright);}
+.gh-title span{color:var(--electric);}
+.gh-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.3);color:var(--electric);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:10px 20px;border-radius:100px;text-decoration:none;font-family:'DM Mono',monospace;}
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;}
+.fc{display:flex;align-items:flex-start;gap:14px;background:#0c1524;border:1px solid var(--border);border-radius:12px;padding:16px 18px;transition:all 0.2s;}
+.fc:hover{border-color:var(--electric);transform:translateX(4px);}
+.fi{font-size:18px;flex-shrink:0;}
+.fn{font-size:12px;font-weight:500;color:var(--electric);margin-bottom:4px;}
+.fd{font-size:10px;color:var(--dim);line-height:1.6;}
+.gh-links{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
+.ghl{display:flex;align-items:center;gap:12px;background:#0c1524;border:1px solid var(--border);border-radius:12px;padding:16px 20px;text-decoration:none;transition:all 0.2s;}
+.ghl:hover{border-color:var(--electric);}
+.ghi{font-size:20px;}
+.ght h4{font-size:12px;font-weight:600;color:var(--bright);margin-bottom:3px;}
+.ght p{font-size:10px;color:var(--dim);}
+.gha{margin-left:auto;color:var(--dim);}
+
+/* RESULTS */
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:40px;}
+.rc{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 16px;text-align:center;transition:all 0.3s;}
+.rc:hover{border-color:rgba(120,200,255,0.22);transform:translateY(-3px);}
+.rv{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,8vw,44px);font-weight:700;line-height:1;margin-bottom:6px;}
+.rl2{font-size:clamp(8px,1.8vw,9px);letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);}
+.rs{font-size:clamp(9px,1.8vw,10px);color:var(--text);margin-top:4px;}
+
+/* SKILLS */
+.sw{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;}
+.sp{display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:7px 14px;font-size:clamp(9px,2vw,11px);color:var(--text);white-space:nowrap;}
+.sp:hover{border-color:var(--electric);color:var(--electric);}
+.sdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:36px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.fl{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--bright);}
+.fl span{color:var(--electric);}
+.flinks{display:flex;gap:20px;}
+.flink{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;}
+.flink:hover{color:var(--electric);}
+.fstack{font-size:9px;color:var(--dim);width:100%;text-align:center;}
+
+/* MODAL */
+.mo{position:fixed;inset:0;z-index:999;background:rgba(3,8,15,0.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.mo.open{opacity:1;pointer-events:all;}
+.md{background:#080f1a;border:1px solid rgba(0,212,255,0.2);border-radius:24px;width:100%;max-width:620px;max-height:90vh;overflow-y:auto;transform:translateY(24px);transition:transform 0.3s;}
+.mo.open .md{transform:translateY(0);}
+.mh{padding:24px 28px 18px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;background:#080f1a;z-index:1;}
+.mt2{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--bright);}
+.mt2 span{color:var(--electric);}
+.mc{width:32px;height:32px;border-radius:50%;background:#0c1524;border:1px solid var(--border);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.mb{padding:22px 28px;}
+.step{display:flex;gap:14px;margin-bottom:22px;}
+.snum{width:28px;height:28px;border-radius:8px;background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.2);color:var(--electric);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sc{flex:1;min-width:0;}
+.stitle{font-size:12px;font-weight:500;color:var(--bright);margin-bottom:6px;}
+.scode{background:#040a12;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--green);line-height:1.8;position:relative;overflow-x:auto;white-space:pre;}
+.cpbtn{position:absolute;top:6px;right:6px;background:#0c1524;border:1px solid var(--border);color:var(--dim);font-size:9px;text-transform:uppercase;padding:3px 8px;border-radius:5px;cursor:pointer;font-family:'DM Mono',monospace;}
+.lbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;background:var(--electric);color:var(--bg);border-radius:10px;font-size:11px;font-weight:600;text-transform:uppercase;text-decoration:none;font-family:'DM Mono',monospace;margin-top:6px;}
+.claimb{background:#040a12;border:1px solid rgba(200,169,110,0.2);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--gold);line-height:1.9;position:relative;white-space:pre-wrap;}
+
+@media(max-width:640px){
+.kpi-row,.cr,.br{grid-template-columns:1fr 1fr;}
+.cr{grid-template-columns:1fr;}
+.gh-links{grid-template-columns:1fr;}
+nav{padding:12px 16px;}
+section{padding:56px 16px;}
+.hero{padding:90px 16px 52px;}
+footer{padding:28px 16px;}
+.mh,.mb{padding:18px 20px;}
+}
+</style>
 </head>
 <body>
-<p>Loading InsureIQ Portfolio...</p>
+
+<!-- MODAL -->
+<div class="mo" id="mo" onclick="closeBg(event)">
+<div class="md">
+<div class="mh">
+<div><div class="mt2">Run <span>InsureIQ</span> Locally</div><div style="font-size:10px;color:var(--dim);margin-top:3px;">Live in under 5 minutes</div></div>
+<button class="mc" onclick="closeM()">✕</button>
+</div>
+<div class="mb">
+<div class="step"><div class="snum">1</div><div class="sc"><div class="stitle">Clone the Repository</div><div class="scode" id="c1">git clone https://github.com/Momna-bit/insureiq.git
+cd insureiq<button class="cpbtn" onclick="cp('c1',this)">Copy</button></div></div></div>
+<div class="step"><div class="snum">2</div><div class="sc"><div class="stitle">Install Dependencies</div><div class="scode" id="c2">pip install -r requirements.txt<button class="cpbtn" onclick="cp('c2',this)">Copy</button></div></div></div>
+<div class="step"><div class="snum">3</div><div class="sc"><div class="stitle">Set Up API Keys (.env file)</div><div class="scode" id="c3">ANTHROPIC_API_KEY=your_claude_key
+OPENAI_API_KEY=your_openai_key
+SNOWFLAKE_ACCOUNT=your_account
+SNOWFLAKE_USER=your_username
+SNOWFLAKE_PASSWORD=your_password
+SNOWFLAKE_WAREHOUSE=COMPUTE_WH
+SNOWFLAKE_DATABASE=INSUREIQ_RAW
+SNOWFLAKE_SCHEMA=CLAIMS<button class="cpbtn" onclick="cp('c3',this)">Copy</button></div></div></div>
+<div class="step"><div class="snum">4</div><div class="sc"><div class="stitle">Train Model + Index Claims</div><div class="scode" id="c4">python src/train_model.py
+python src/generate_historical.py
+python src/index_historical.py<button class="cpbtn" onclick="cp('c4',this)">Copy</button></div></div></div>
+<div class="step"><div class="snum">5</div><div class="sc"><div class="stitle">Start the API</div><div class="scode" id="c5">python src/api.py<button class="cpbtn" onclick="cp('c5',this)">Copy</button></div></div></div>
+<div class="step"><div class="snum">6</div><div class="sc"><div class="stitle">Launch the Dashboard</div><div class="scode" id="c6">streamlit run src/dashboard.py<button class="cpbtn" onclick="cp('c6',this)">Copy</button></div></div></div>
+<div class="step"><div class="snum">7</div><div class="sc"><div class="stitle">Open the Dashboard</div><a href="http://localhost:8501" target="_blank" class="lbtn">🛡️ Open InsureIQ → localhost:8501</a></div></div>
+<div class="step"><div class="snum">✦</div><div class="sc"><div class="stitle">Test Claim — paste this into the dashboard</div><div class="claimb" id="c7">Claimant: Ahmed Hassan
+Date: 2024-11-20
+Type: Vehicle Accident
+Amount: $28,000
+Description: Car stolen from outside house at night.
+No witnesses. Second claim this year. No police report.<button class="cpbtn" onclick="cp('c7',this)" style="color:var(--gold)">Copy</button></div></div></div>
+</div></div></div>
+
+<!-- NAV -->
+<nav>
+<div class="nav-logo">Insure<span>IQ</span></div>
+<div class="nav-right">
+<button class="nav-btn" onclick="openM()">🎬 Live Demo</button>
+<a href="https://github.com/Momna-bit/insureiq" target="_blank" class="nav-btn nav-gh">GitHub →</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+<div class="badge"><span class="pulse"></span>Case Study · GenAI + ML · InsureTech</div>
+<h1>Insure<em>IQ</em></h1>
+<p class="sub">AI Claims Intelligence Platform</p>
+<p class="desc">What if an AI could read an insurance claim, cross-reference thousands of past cases, spot fraud patterns a human might miss, and deliver a decision — in seconds? That's InsureIQ.</p>
+<div class="btns">
+<button class="btn" onclick="openM()">🎬 Run Live Demo</button>
+<a href="https://github.com/Momna-bit/insureiq" target="_blank" class="btn btn-outline">⚡ View on GitHub</a>
+</div>
+<div class="stats">
+<div class="stat"><div class="stat-val">99.7%</div><div class="stat-label">Fraud Accuracy</div></div>
+<div class="stat"><div class="stat-val">500+</div><div class="stat-label">Claims Indexed</div></div>
+<div class="stat"><div class="stat-val">1.0</div><div class="stat-label">AUC Score</div></div>
+<div class="stat"><div class="stat-val">3</div><div class="stat-label">API Endpoints</div></div>
+</div>
+</div>
+
+<hr/>
+
+<!-- PROBLEM -->
+<section>
+<div class="ey">The Problem</div>
+<h2>Insurance fraud is a<br/><em>$80 billion</em> annual crisis.</h2>
+<p class="body">Traditional fraud detection relies on manual review — slow, inconsistent, impossible to scale. InsureIQ was built to change that with AI.</p>
+<div class="prob">
+<div class="prob-num">$80B</div>
+<div class="prob-text"><h3>Lost to insurance fraud every year</h3><p style="font-size:clamp(11px,2vw,13px);line-height:1.9;color:var(--text);">That's roughly 10% of all insurance payouts globally. Manual review catches less than 20% of fraudulent claims. The rest slip through — costing insurers billions every year.</p></div>
+</div>
+<div class="grid" style="margin-top:28px;">
+<div class="card cb"><div class="ci">🧠</div><div class="ct">The AI Brain</div><div class="cc">Claude AI reads every claim the way a senior analyst would — extracting claimant details, incident type, amount, and anything that doesn't add up. No forms, no templates. Pure intelligence applied to raw text.</div></div>
+<div class="card cg"><div class="ci">🔍</div><div class="ct">The Memory Layer</div><div class="cc">Every claim is instantly compared against 500+ historical cases stored as mathematical patterns in ChromaDB — like giving the AI years of institutional experience in milliseconds.</div></div>
+<div class="card cv"><div class="ci">⚡</div><div class="ct">The Risk Engine</div><div class="cc">An XGBoost ML model scores each claim's fraud probability in real time. High risk triggers investigation. Low risk moves to fast approval. Clear, consistent decisions every time.</div></div>
+<div class="card cb wide"><div class="ci">📊</div><div class="ct">The Executive Dashboard</div><div class="cc">Every claim, score, and red flag flows into Snowflake's three-layer data warehouse (RAW → TRANSFORM → MART) and surfaces in a custom-built HTML executive dashboard — showing fraud rates, risk distribution, and claim volume in real time.</div></div>
+</div>
+</section>
+
+<hr/>
+
+<!-- EXECUTIVE DASHBOARD EMBEDDED -->
+<section>
+<div class="ey">Executive Dashboard</div>
+<h2>Live intelligence.<br/><em>Built from scratch.</em></h2>
+<p class="body">Instead of using Power BI like everyone else, I built a custom executive dashboard from scratch — connected live to Snowflake MART. Clean, professional, and fully code-driven.</p>
+<div style="text-align:right;margin-top:12px;"><a href="https://momna-bit.github.io/insureiq/dashboard.html" target="_blank" style="font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--electric);border:1px solid rgba(0,212,255,0.3);padding:8px 18px;border-radius:100px;text-decoration:none;">Open Full Dashboard →</a></div>
+
+<div class="dash-wrap">
+<div class="dash-hdr">
+<div class="dl">Insure<span>IQ</span> &nbsp;·&nbsp; <span style="font-size:12px;color:#64748B;font-weight:400;">AI Claims Intelligence · Executive Dashboard</span></div>
+<div class="dlive"><div class="dd"></div>Live · Snowflake Connected</div>
+</div>
+<div class="dash-body">
+<div class="kpi-row">
+<div class="kpi kb"><div class="kl">Total Claims</div><div class="kv b">10</div><div class="ks">All time · Live data</div></div>
+<div class="kpi kr"><div class="kl">High Risk Claims</div><div class="kv r">5</div><div class="ks">50% of total volume</div></div>
+<div class="kpi ka"><div class="kl">Avg Fraud Score</div><div class="kv a">0.60</div><div class="ks">XGBoost · AUC 1.0</div></div>
+<div class="kpi kg"><div class="kl">Total $ at Risk</div><div class="kv g">$179.5K</div><div class="ks">Across all claim types</div></div>
+</div>
+<div class="cr">
+<div class="dc"><div class="dt">📊 Claims by Incident Type</div><div class="ds">Fraud risk distribution</div><canvas id="bc" height="180"></canvas></div>
+<div class="dc"><div class="dt">🎯 Risk Distribution</div><div class="ds">HIGH · MEDIUM · LOW</div><div style="position:relative;width:130px;height:130px;margin:0 auto 12px;"><canvas id="dc2"></canvas><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;"><div style="font-size:20px;font-weight:700;color:#EF4444;font-family:Inter,sans-serif;">50%</div><div style="font-size:9px;color:#94A3B8;font-family:Inter,sans-serif;">HIGH</div></div></div>
+<div style="display:flex;flex-direction:column;gap:8px;">
+<div style="display:flex;justify-content:space-between;font-size:11px;font-family:Inter,sans-serif;"><span style="display:flex;align-items:center;gap:6px;color:#475569;"><span style="width:8px;height:8px;border-radius:50%;background:#EF4444;display:inline-block;"></span>HIGH Risk</span><span style="font-weight:600;color:#0F172A;">5 (50%)</span></div>
+<div style="display:flex;justify-content:space-between;font-size:11px;font-family:Inter,sans-serif;"><span style="display:flex;align-items:center;gap:6px;color:#475569;"><span style="width:8px;height:8px;border-radius:50%;background:#F59E0B;display:inline-block;"></span>MEDIUM Risk</span><span style="font-weight:600;color:#0F172A;">3 (30%)</span></div>
+<div style="display:flex;justify-content:space-between;font-size:11px;font-family:Inter,sans-serif;"><span style="display:flex;align-items:center;gap:6px;color:#475569;"><span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;"></span>LOW Risk</span><span style="font-weight:600;color:#0F172A;">2 (20%)</span></div>
+</div></div>
+</div>
+<div class="br">
+<div class="dc"><div class="dt">📋 Top Claims by Risk Score</div><div class="ds">Ranked by AI fraud assessment</div>
+<table class="mt"><thead><tr><th>Claimant</th><th>Incident</th><th>Amount</th><th>Risk</th></tr></thead><tbody>
+<tr><td><b>Ahmed Hassan</b></td><td>Vehicle</td><td><b>$28K</b></td><td><span class="risk-badge rh">HIGH</span></td></tr>
+<tr><td><b>Ahmed Khan</b></td><td>Fire</td><td><b>$42K</b></td><td><span class="risk-badge rh">HIGH</span></td></tr>
+<tr><td><b>Carlos Rivera</b></td><td>Water</td><td><b>$8.5K</b></td><td><span class="risk-badge rh">HIGH</span></td></tr>
+<tr><td><b>Sara Patel</b></td><td>Property</td><td><b>$35K</b></td><td><span class="risk-badge rh">HIGH</span></td></tr>
+<tr><td><b>Emma Wilson</b></td><td>Medical</td><td><b>$12K</b></td><td><span class="risk-badge rm">MED</span></td></tr>
+</tbody></table></div>
+<div class="dc"><div class="dt">🏆 Fraud Score by Claimant</div><div class="ds">Higher = higher fraud probability</div>
+<div class="sl">
+<div><div class="sh"><span class="sn">Ahmed Hassan</span><span style="font-size:11px;font-weight:700;color:#EF4444;font-family:Inter,sans-serif;">99.7%</span></div><div class="st"><div class="sf" style="width:99.7%;background:#EF4444;"></div></div></div>
+<div><div class="sh"><span class="sn">Ahmed Khan</span><span style="font-size:11px;font-weight:700;color:#EF4444;font-family:Inter,sans-serif;">95.0%</span></div><div class="st"><div class="sf" style="width:95%;background:#EF4444;"></div></div></div>
+<div><div class="sh"><span class="sn">Carlos Rivera</span><span style="font-size:11px;font-weight:700;color:#EF4444;font-family:Inter,sans-serif;">91.0%</span></div><div class="st"><div class="sf" style="width:91%;background:#EF4444;"></div></div></div>
+<div><div class="sh"><span class="sn">Sara Patel</span><span style="font-size:11px;font-weight:700;color:#F59E0B;font-family:Inter,sans-serif;">76.0%</span></div><div class="st"><div class="sf" style="width:76%;background:#F59E0B;"></div></div></div>
+<div><div class="sh"><span class="sn">Emma Wilson</span><span style="font-size:11px;font-weight:700;color:#F59E0B;font-family:Inter,sans-serif;">65.0%</span></div><div class="st"><div class="sf" style="width:65%;background:#F59E0B;"></div></div></div>
+<div><div class="sh"><span class="sn">John Smith</span><span style="font-size:11px;font-weight:700;color:#10B981;font-family:Inter,sans-serif;">21.0%</span></div><div class="st"><div class="sf" style="width:21%;background:#10B981;"></div></div></div>
+</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<hr/>
+
+<!-- GITHUB SECTION -->
+<section>
+<div class="gh-section">
+<div class="gh-hdr">
+<div><div class="ey" style="margin-bottom:8px;">What's on GitHub</div><div class="gh-title">Everything is <span>open source</span></div><p style="font-size:12px;color:var(--dim);margin-top:8px;line-height:1.7;">Every file, every model, every endpoint — fully documented and available on GitHub.</p></div>
+<a href="https://github.com/Momna-bit/insureiq" target="_blank" class="gh-btn">⚡ View Full Repository →</a>
+</div>
+<div class="files">
+<div class="fc"><div class="fi">🧠</div><div><div class="fn">src/extract.py</div><div class="fd">Claude AI reads raw claim documents and extracts structured JSON</div></div></div>
+<div class="fc"><div class="fi">🔍</div><div><div class="fn">src/embeddings.py</div><div class="fd">Converts claims into vector embeddings and indexes into ChromaDB</div></div></div>
+<div class="fc"><div class="fi">🎯</div><div><div class="fn">src/rag.py</div><div class="fd">Full RAG pipeline — finds top 3 similar historical claims as context</div></div></div>
+<div class="fc"><div class="fi">⚡</div><div><div class="fn">src/train_model.py</div><div class="fd">Trains XGBoost fraud detection model with SMOTE balancing</div></div></div>
+<div class="fc"><div class="fi">🔌</div><div><div class="fn">src/api.py</div><div class="fd">Flask REST API with 3 endpoints: /analyze, /risk, /health</div></div></div>
+<div class="fc"><div class="fi">📊</div><div><div class="fn">src/dashboard.py</div><div class="fd">Streamlit interactive dashboard — upload claim, get fraud score instantly</div></div></div>
+<div class="fc"><div class="fi">🐳</div><div><div class="fn">Dockerfile</div><div class="fd">Full Docker containerization — run the entire stack in one command</div></div></div>
+<div class="fc"><div class="fi">⚙️</div><div><div class="fn">.github/workflows/ci.yml</div><div class="fd">GitHub Actions CI/CD — lints, tests, and builds on every push</div></div></div>
+<div class="fc"><div class="fi">📊</div><div><div class="fn">docs/dashboard.html</div><div class="fd">Custom HTML executive dashboard connected live to Snowflake MART</div></div></div>
+<div class="fc"><div class="fi">📖</div><div><div class="fn">README.md</div><div class="fd">Full documentation — architecture, API docs, setup guide, deployment</div></div></div>
+</div>
+<div class="gh-links">
+<a href="https://github.com/Momna-bit/insureiq" target="_blank" class="ghl"><div class="ghi">💻</div><div class="ght"><h4>Full Source Code</h4><p>github.com/Momna-bit/insureiq</p></div><div class="gha">→</div></a>
+<a href="https://momna-bit.github.io/insureiq/dashboard.html" target="_blank" class="ghl"><div class="ghi">📊</div><div class="ght"><h4>Live Executive Dashboard</h4><p>momna-bit.github.io/insureiq/dashboard.html</p></div><div class="gha">→</div></a>
+</div>
+</div>
+</section>
+
+<hr/>
+
+<!-- RESULTS -->
+<section>
+<div class="ey">Results</div>
+<h2>Numbers that<br/><em>speak for themselves.</em></h2>
+<p class="body">Built in four weeks. Tested end to end. Production-ready from day one.</p>
+<div class="rg">
+<div class="rc"><div class="rv" style="color:var(--electric)">99.7%</div><div class="rl2">Fraud Accuracy</div><div class="rs">Live submissions</div></div>
+<div class="rc"><div class="rv" style="color:var(--gold)">500+</div><div class="rl2">Claims Indexed</div><div class="rs">ChromaDB vector store</div></div>
+<div class="rc"><div class="rv" style="color:var(--green)">1.0</div><div class="rl2">AUC Score</div><div class="rs">XGBoost model</div></div>
+<div class="rc"><div class="rv" style="color:var(--electric)">3</div><div class="rl2">API Endpoints</div><div class="rs">/analyze /risk /health</div></div>
+<div class="rc"><div class="rv" style="color:var(--gold)">3</div><div class="rl2">Data Layers</div><div class="rs">RAW→TRANSFORM→MART</div></div>
+<div class="rc"><div class="rv" style="color:var(--green)">100%</div><div class="rl2">E2E Test Pass</div><div class="rs">GitHub Actions</div></div>
+</div>
+<div class="ey" style="margin-top:56px;">Skills Demonstrated</div>
+<div class="sw">
+<div class="sp"><div class="sdot" style="background:var(--electric)"></div>GenAI — Claude 3.5</div>
+<div class="sp"><div class="sdot" style="background:var(--electric)"></div>Prompt Engineering</div>
+<div class="sp"><div class="sdot" style="background:var(--gold)"></div>RAG Pipeline</div>
+<div class="sp"><div class="sdot" style="background:var(--gold)"></div>Vector Databases</div>
+<div class="sp"><div class="sdot" style="background:var(--green)"></div>XGBoost · SMOTE</div>
+<div class="sp"><div class="sdot" style="background:var(--green)"></div>ML Ops</div>
+<div class="sp"><div class="sdot" style="background:var(--electric)"></div>Snowflake</div>
+<div class="sp"><div class="sdot" style="background:var(--gold)"></div>Flask REST API</div>
+<div class="sp"><div class="sdot" style="background:var(--green)"></div>Streamlit</div>
+<div class="sp"><div class="sdot" style="background:var(--electric)"></div>Docker</div>
+<div class="sp"><div class="sdot" style="background:var(--gold)"></div>GitHub Actions</div>
+<div class="sp"><div class="sdot" style="background:var(--green)"></div>Azure</div>
+</div>
+</section>
+
+<hr/>
+<footer>
+<div class="fl">Insure<span>IQ</span> · Momna Ali</div>
+<div class="flinks">
+<a href="https://github.com/Momna-bit/insureiq" target="_blank" class="flink">GitHub</a>
+<a href="https://momna-bit.github.io/insureiq/dashboard.html" target="_blank" class="flink">Dashboard</a>
+<a href="https://linkedin.com" target="_blank" class="flink">LinkedIn</a>
+</div>
+<div class="fstack">GenAI · RAG · XGBoost · Snowflake · Docker · Azure · Custom Dashboard</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function openM(){document.getElementById('mo').classList.add('open');document.body.style.overflow='hidden';}
+function closeM(){document.getElementById('mo').classList.remove('open');document.body.style.overflow='';}
+function closeBg(e){if(e.target===document.getElementById('mo'))closeM();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+function cp(id,btn){const el=document.getElementById(id);const text=el.innerText.replace(/Copy|Copied!/g,'').trim();navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);});}
+
+new Chart(document.getElementById('bc'),{type:'bar',data:{labels:['Fire Damage','Medical','Theft','Vehicle Accident','Property Damage','Water Damage'],datasets:[{label:'HIGH',data:[2,1,1,1,1,1],backgroundColor:'#0EA5E9',borderRadius:4},{label:'MEDIUM',data:[0,1,1,0,0,0],backgroundColor:'#F59E0B',borderRadius:4},{label:'LOW',data:[0,0,0,1,0,0],backgroundColor:'#10B981',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{stacked:true,grid:{color:'#F1F5F9'},ticks:{color:'#94A3B8',font:{size:10}}},y:{stacked:true,grid:{display:false},ticks:{color:'#475569',font:{size:10}}}}}});
+new Chart(document.getElementById('dc2'),{type:'doughnut',data:{labels:['HIGH','MEDIUM','LOW'],datasets:[{data:[5,3,2],backgroundColor:['#EF4444','#F59E0B','#10B981'],borderWidth:3,borderColor:'#FFFFFF'}]},options:{responsive:true,maintainAspectRatio:true,cutout:'68%',plugins:{legend:{display:false}}}});
+</script>
 </body>
 </html>
