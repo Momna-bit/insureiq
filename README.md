@@ -180,4 +180,4 @@ docker-compose up --build
 
 ---
 
-*Built in 4 weeks. Tested end to end. Production-ready.*
+
