@@ -187,12 +187,12 @@ Done:
 - Docker containerization
 - GitHub Actions CI/CD
 
-Coming:
-- Power BI executive dashboard
-- Real-time claim streaming
-- Multi-language support
-- Explainable AI with SHAP values
-- Azure cloud deployment
+Coming (already done):
+- [x] Custom HTML Executive Dashboard
+- [x] Live portfolio on GitHub Pages
+
+
+
 
 ---
 
