@@ -3,118 +3,471 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>InsureIQ Executive Dashboard</title>
+<title>InsureIQ — Executive Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Inter',sans-serif;background:#F0F4F8;min-height:100vh;}
-.header{background:#fff;padding:14px 28px;border-bottom:1px solid #E2E8F0;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
-.logo{font-size:16px;font-weight:700;color:#0F172A;}.logo span{color:#0EA5E9;}
-.live{display:flex;align-items:center;gap:6px;background:#ECFDF5;border:1px solid #A7F3D0;color:#059669;font-size:11px;font-weight:500;padding:5px 12px;border-radius:100px;}
-.dot{width:6px;height:6px;border-radius:50%;background:#10B981;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-.back{font-size:11px;color:#0EA5E9;text-decoration:none;border:1px solid rgba(14,165,233,0.3);padding:6px 14px;border-radius:100px;}
-.main{padding:24px 28px;max-width:1400px;margin:0 auto;}
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px;}
-.kpi{background:#fff;border-radius:14px;padding:20px 22px;border:1px solid #E2E8F0;position:relative;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:transform 0.2s,box-shadow 0.2s;}
-.kpi:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.08);}
-.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:14px 14px 0 0;}
-.kb::before{background:linear-gradient(90deg,#0EA5E9,#38BDF8);}
-.kr::before{background:linear-gradient(90deg,#EF4444,#F87171);}
-.ka::before{background:linear-gradient(90deg,#F59E0B,#FCD34D);}
-.kg::before{background:linear-gradient(90deg,#10B981,#34D399);}
-.kpi-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;}
-.kl{font-size:11px;font-weight:500;color:#64748B;text-transform:uppercase;letter-spacing:0.06em;}
-.ki{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;}
-.ki.b{background:#EFF6FF;}.ki.r{background:#FEF2F2;}.ki.a{background:#FFFBEB;}.ki.g{background:#ECFDF5;}
-.kv{font-size:34px;font-weight:700;letter-spacing:-1px;margin-bottom:4px;}
-.kv.b{color:#0EA5E9;}.kv.r{color:#EF4444;}.kv.a{color:#F59E0B;}.kv.g{color:#10B981;}
-.ks{font-size:11px;color:#94A3B8;}
-.cr{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:20px;}
-.br{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.dc{background:#fff;border-radius:14px;padding:22px 24px;border:1px solid #E2E8F0;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
-.dt{font-size:13px;font-weight:600;color:#0F172A;margin-bottom:3px;}
-.ds{font-size:11px;color:#94A3B8;margin-bottom:16px;}
-.dw{position:relative;width:150px;height:150px;margin:0 auto 14px;}
-.dc2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
-.dp{font-size:22px;font-weight:700;color:#EF4444;}
-.dl{font-size:9px;color:#94A3B8;}
-.dleg{display:flex;flex-direction:column;gap:8px;}
-.dlr{display:flex;align-items:center;justify-content:space-between;}
-.dll{display:flex;align-items:center;gap:7px;font-size:11px;color:#475569;}
-.dld{width:8px;height:8px;border-radius:50%;}
-.dlv{font-size:11px;font-weight:600;color:#0F172A;}
-.sl{display:flex;flex-direction:column;gap:12px;}
-.sh{display:flex;justify-content:space-between;margin-bottom:5px;}
-.sn{font-size:12px;color:#334155;font-weight:500;}
-.st{height:7px;background:#F1F5F9;border-radius:100px;overflow:hidden;}
-.sf{height:100%;border-radius:100px;}
-.mt{width:100%;border-collapse:collapse;}
-.mt th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:#94A3B8;padding:0 8px 12px 0;text-align:left;border-bottom:1px solid #F1F5F9;}
-.mt td{font-size:12px;color:#334155;padding:9px 8px 9px 0;border-bottom:1px solid #F8FAFC;}
-.rb{padding:3px 10px;border-radius:100px;font-size:10px;font-weight:600;}
-.rh{background:#FEF2F2;color:#EF4444;}.rm{background:#FFFBEB;color:#F59E0B;}.rl{background:#ECFDF5;color:#10B981;}
-footer{text-align:center;padding:24px;font-size:11px;color:#94A3B8;}
-footer span{color:#0EA5E9;}
-@media(max-width:768px){.kpi-row{grid-template-columns:repeat(2,1fr);}.cr,.br{grid-template-columns:1fr;}.main{padding:16px;}}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F0F4F8; min-height: 100vh; }
+ 
+  /* HEADER */
+  .header {
+    background: #FFFFFF;
+    padding: 14px 28px;
+    border-bottom: 1px solid #E2E8F0;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .logo { display: flex; align-items: center; gap: 8px; }
+  .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #0EA5E9, #0284C7); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .logo-text { font-size: 16px; font-weight: 700; color: #0F172A; letter-spacing: -0.3px; }
+  .logo-text span { color: #0EA5E9; }
+  .header-divider { width: 1px; height: 24px; background: #E2E8F0; }
+  .header-subtitle { font-size: 12px; color: #64748B; }
+  .header-right { display: flex; align-items: center; gap: 12px; }
+  .live-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: #ECFDF5; border: 1px solid #A7F3D0;
+    color: #059669; font-size: 11px; font-weight: 500;
+    padding: 5px 12px; border-radius: 100px;
+  }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #10B981; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  .snowflake-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: #EFF6FF; border: 1px solid #BFDBFE;
+    color: #3B82F6; font-size: 11px; font-weight: 500;
+    padding: 5px 12px; border-radius: 100px;
+  }
+  .date-badge { font-size: 11px; color: #94A3B8; }
+ 
+  /* MAIN */
+  .main { padding: 24px 28px; max-width: 1400px; margin: 0 auto; }
+ 
+  /* KPI CARDS */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+  .kpi-card {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 20px 22px;
+    border: 1px solid #E2E8F0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .kpi-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 14px 14px 0 0; }
+  .kpi-blue::before { background: linear-gradient(90deg, #0EA5E9, #38BDF8); }
+  .kpi-red::before { background: linear-gradient(90deg, #EF4444, #F87171); }
+  .kpi-amber::before { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
+  .kpi-green::before { background: linear-gradient(90deg, #10B981, #34D399); }
+ 
+  .kpi-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+  .kpi-label { font-size: 11px; font-weight: 500; color: #64748B; text-transform: uppercase; letter-spacing: 0.06em; }
+  .kpi-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .kpi-icon.blue { background: #EFF6FF; }
+  .kpi-icon.red { background: #FEF2F2; }
+  .kpi-icon.amber { background: #FFFBEB; }
+  .kpi-icon.green { background: #ECFDF5; }
+  .kpi-value { font-size: 34px; font-weight: 700; letter-spacing: -1px; margin-bottom: 4px; }
+  .kpi-value.blue { color: #0EA5E9; }
+  .kpi-value.red { color: #EF4444; }
+  .kpi-value.amber { color: #F59E0B; }
+  .kpi-value.green { color: #10B981; }
+  .kpi-sub { font-size: 11px; color: #94A3B8; }
+ 
+  /* CHART CARDS */
+  .charts-row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+ 
+  .chart-card {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 22px 24px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .chart-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
+  .chart-title-wrap { }
+  .chart-emoji { font-size: 16px; margin-right: 6px; }
+  .chart-title { font-size: 13px; font-weight: 600; color: #0F172A; display: inline; }
+  .chart-sub { font-size: 11px; color: #94A3B8; margin-top: 3px; }
+ 
+  /* LEGEND */
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #64748B; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+ 
+  /* DONUT SECTION */
+  .donut-section { display: flex; flex-direction: column; align-items: center; }
+  .donut-wrap { position: relative; width: 160px; height: 160px; margin: 0 auto 16px; }
+  .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+  .donut-pct { font-size: 24px; font-weight: 700; color: #EF4444; }
+  .donut-label { font-size: 10px; color: #94A3B8; }
+  .donut-legend { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+  .donut-legend-row { display: flex; align-items: center; justify-content: space-between; }
+  .donut-legend-left { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569; }
+  .donut-legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .donut-legend-val { font-size: 12px; font-weight: 600; color: #0F172A; }
+ 
+  /* SCORE BARS */
+  .score-list { display: flex; flex-direction: column; gap: 14px; }
+  .score-item { }
+  .score-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .score-name { font-size: 12px; color: #334155; font-weight: 500; }
+  .score-pct { font-size: 12px; font-weight: 700; }
+  .score-track { height: 7px; background: #F1F5F9; border-radius: 100px; overflow: hidden; }
+  .score-fill { height: 100%; border-radius: 100px; transition: width 1s ease; }
+ 
+  /* TABLE */
+  .mini-table { width: 100%; border-collapse: collapse; }
+  .mini-table thead tr { border-bottom: 1px solid #F1F5F9; }
+  .mini-table th { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #94A3B8; padding: 0 8px 12px 0; text-align: left; }
+  .mini-table td { font-size: 12px; color: #334155; padding: 10px 8px 10px 0; border-bottom: 1px solid #F8FAFC; }
+  .mini-table tr:last-child td { border-bottom: none; }
+  .claimant-name { font-weight: 500; color: #0F172A; }
+  .amount { font-weight: 600; color: #0F172A; }
+  .risk-badge { padding: 3px 10px; border-radius: 100px; font-size: 10px; font-weight: 600; letter-spacing: 0.04em; white-space: nowrap; }
+  .risk-high { background: #FEF2F2; color: #EF4444; }
+  .risk-med { background: #FFFBEB; color: #F59E0B; }
+  .risk-low { background: #ECFDF5; color: #10B981; }
+ 
+  /* FOOTER */
+  .footer { text-align: center; padding: 24px; font-size: 11px; color: #94A3B8; }
+  .footer span { color: #0EA5E9; }
+ 
+  @media (max-width: 768px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .charts-row { grid-template-columns: 1fr; }
+    .bottom-row { grid-template-columns: 1fr; }
+    .main { padding: 16px; }
+  }
 </style>
 </head>
 <body>
+ 
+<!-- HEADER -->
 <div class="header">
-  <div style="display:flex;align-items:center;gap:16px;">
-    <div class="logo">Insure<span>IQ</span> &nbsp;·&nbsp; <span style="font-size:12px;color:#64748B;font-weight:400;">Executive Dashboard</span></div>
+  <div class="header-left">
+    <div class="logo">
+      <div class="logo-icon">🛡️</div>
+      <div class="logo-text">Insure<span>IQ</span></div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-subtitle">AI Claims Intelligence · Executive Dashboard</div>
   </div>
-  <div style="display:flex;align-items:center;gap:12px;">
-    <div class="live"><div class="dot"></div>Live · Snowflake Connected</div>
-    <a href="https://momna-bit.github.io/insureiq" class="back">← Portfolio</a>
+  <div class="header-right">
+    <div class="live-badge"><div class="live-dot"></div>Live Data</div>
+    <div class="snowflake-badge">❄️ Snowflake Connected</div>
+    <div class="date-badge" id="dateDisplay"></div>
   </div>
 </div>
+ 
+<!-- MAIN -->
 <div class="main">
+ 
+  <!-- KPI CARDS -->
   <div class="kpi-row">
-    <div class="kpi kb"><div class="kpi-top"><div class="kl">Total Claims</div><div class="ki b">📋</div></div><div class="kv b">10</div><div class="ks">All time · Live data</div></div>
-    <div class="kpi kr"><div class="kpi-top"><div class="kl">High Risk Claims</div><div class="ki r">🚨</div></div><div class="kv r">5</div><div class="ks">50% of total volume</div></div>
-    <div class="kpi ka"><div class="kpi-top"><div class="kl">Avg Fraud Score</div><div class="ki a">⚡</div></div><div class="kv a">0.60</div><div class="ks">XGBoost · AUC 1.0</div></div>
-    <div class="kpi kg"><div class="kpi-top"><div class="kl">Total $ at Risk</div><div class="ki g">💰</div></div><div class="kv g">$179.5K</div><div class="ks">Across all claim types</div></div>
+    <div class="kpi-card kpi-blue">
+      <div class="kpi-top">
+        <div class="kpi-label">Total Claims</div>
+        <div class="kpi-icon blue">📋</div>
+      </div>
+      <div class="kpi-value blue">10</div>
+      <div class="kpi-sub">All time · Live data</div>
+    </div>
+    <div class="kpi-card kpi-red">
+      <div class="kpi-top">
+        <div class="kpi-label">High Risk Claims</div>
+        <div class="kpi-icon red">🚨</div>
+      </div>
+      <div class="kpi-value red">5</div>
+      <div class="kpi-sub">50% of total volume</div>
+    </div>
+    <div class="kpi-card kpi-amber">
+      <div class="kpi-top">
+        <div class="kpi-label">Avg Fraud Score</div>
+        <div class="kpi-icon amber">⚡</div>
+      </div>
+      <div class="kpi-value amber">0.60</div>
+      <div class="kpi-sub">XGBoost · AUC 1.0</div>
+    </div>
+    <div class="kpi-card kpi-green">
+      <div class="kpi-top">
+        <div class="kpi-label">Total $ at Risk</div>
+        <div class="kpi-icon green">💰</div>
+      </div>
+      <div class="kpi-value green">$179.5K</div>
+      <div class="kpi-sub">Across all claim types</div>
+    </div>
   </div>
-  <div class="cr">
-    <div class="dc"><div class="dt">📊 Claims by Incident Type</div><div class="ds">Fraud risk distribution across categories</div><div style="position:relative;height:220px;"><canvas id="bc"></canvas></div></div>
-    <div class="dc"><div class="dt">🎯 Risk Distribution</div><div class="ds">HIGH · MEDIUM · LOW breakdown</div>
-      <div class="dw"><canvas id="dc"></canvas><div class="dc2"><div class="dp">50%</div><div class="dl">HIGH risk</div></div></div>
-      <div class="dleg">
-        <div class="dlr"><div class="dll"><div class="dld" style="background:#EF4444"></div>HIGH Risk</div><div class="dlv">5 (50%)</div></div>
-        <div class="dlr"><div class="dll"><div class="dld" style="background:#F59E0B"></div>MEDIUM Risk</div><div class="dlv">3 (30%)</div></div>
-        <div class="dlr"><div class="dll"><div class="dld" style="background:#10B981"></div>LOW Risk</div><div class="dlv">2 (20%)</div></div>
+ 
+  <!-- CHARTS ROW -->
+  <div class="charts-row">
+    <!-- Bar Chart -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title-wrap">
+          <span class="chart-emoji">📊</span>
+          <span class="chart-title">Claims by Incident Type</span>
+          <div class="chart-sub">Fraud risk distribution across categories</div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#0EA5E9"></div>HIGH</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#F59E0B"></div>MEDIUM</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#10B981"></div>LOW</div>
+        </div>
+      </div>
+      <div style="position:relative; height:220px;">
+        <canvas id="barChart" role="img" aria-label="Bar chart showing claims by incident type and fraud label"></canvas>
+      </div>
+    </div>
+ 
+    <!-- Donut Chart -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title-wrap">
+          <span class="chart-emoji">🎯</span>
+          <span class="chart-title">Risk Distribution</span>
+          <div class="chart-sub">HIGH · MEDIUM · LOW breakdown</div>
+        </div>
+      </div>
+      <div class="donut-section">
+        <div class="donut-wrap">
+          <canvas id="donutChart" role="img" aria-label="Donut chart showing risk distribution"></canvas>
+          <div class="donut-center">
+            <div class="donut-pct">50%</div>
+            <div class="donut-label">HIGH risk</div>
+          </div>
+        </div>
+        <div class="donut-legend">
+          <div class="donut-legend-row">
+            <div class="donut-legend-left"><div class="donut-legend-dot" style="background:#EF4444"></div>HIGH Risk</div>
+            <div class="donut-legend-val">5 (50%)</div>
+          </div>
+          <div class="donut-legend-row">
+            <div class="donut-legend-left"><div class="donut-legend-dot" style="background:#F59E0B"></div>MEDIUM Risk</div>
+            <div class="donut-legend-val">3 (30%)</div>
+          </div>
+          <div class="donut-legend-row">
+            <div class="donut-legend-left"><div class="donut-legend-dot" style="background:#10B981"></div>LOW Risk</div>
+            <div class="donut-legend-val">2 (20%)</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="br">
-    <div class="dc"><div class="dt">📋 Top Claims by Risk Score</div><div class="ds">Ranked by AI fraud assessment</div>
-      <table class="mt"><thead><tr><th>Claimant</th><th>Incident</th><th>Amount</th><th>Score</th><th>Risk</th></tr></thead><tbody>
-        <tr><td><b>Ahmed Hassan</b></td><td>Vehicle</td><td><b>$28K</b></td><td>0.997</td><td><span class="rb rh">HIGH</span></td></tr>
-        <tr><td><b>Ahmed Khan</b></td><td>Fire</td><td><b>$42K</b></td><td>0.950</td><td><span class="rb rh">HIGH</span></td></tr>
-        <tr><td><b>Carlos Rivera</b></td><td>Water</td><td><b>$8.5K</b></td><td>0.910</td><td><span class="rb rh">HIGH</span></td></tr>
-        <tr><td><b>Sara Patel</b></td><td>Property</td><td><b>$35K</b></td><td>0.760</td><td><span class="rb rh">HIGH</span></td></tr>
-        <tr><td><b>Emma Wilson</b></td><td>Medical</td><td><b>$12K</b></td><td>0.650</td><td><span class="rb rm">MEDIUM</span></td></tr>
-        <tr><td><b>John Smith</b></td><td>Theft</td><td><b>$5K</b></td><td>0.210</td><td><span class="rb rl">LOW</span></td></tr>
-      </tbody></table>
+ 
+  <!-- BOTTOM ROW -->
+  <div class="bottom-row">
+    <!-- Table -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title-wrap">
+          <span class="chart-emoji">📋</span>
+          <span class="chart-title">Top Claims by Risk Score</span>
+          <div class="chart-sub">Ranked by AI fraud assessment</div>
+        </div>
+      </div>
+      <table class="mini-table">
+        <thead>
+          <tr>
+            <th>Claimant</th>
+            <th>Incident</th>
+            <th>Amount</th>
+            <th>Score</th>
+            <th>Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="claimant-name">Ahmed Hassan</span></td>
+            <td>Vehicle</td>
+            <td><span class="amount">$28K</span></td>
+            <td>0.997</td>
+            <td><span class="risk-badge risk-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><span class="claimant-name">Ahmed Khan</span></td>
+            <td>Fire</td>
+            <td><span class="amount">$42K</span></td>
+            <td>0.950</td>
+            <td><span class="risk-badge risk-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><span class="claimant-name">Carlos Rivera</span></td>
+            <td>Water</td>
+            <td><span class="amount">$8.5K</span></td>
+            <td>0.910</td>
+            <td><span class="risk-badge risk-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><span class="claimant-name">Sara Patel</span></td>
+            <td>Property</td>
+            <td><span class="amount">$35K</span></td>
+            <td>0.760</td>
+            <td><span class="risk-badge risk-high">HIGH</span></td>
+          </tr>
+          <tr>
+            <td><span class="claimant-name">Emma Wilson</span></td>
+            <td>Medical</td>
+            <td><span class="amount">$12K</span></td>
+            <td>0.650</td>
+            <td><span class="risk-badge risk-med">MEDIUM</span></td>
+          </tr>
+          <tr>
+            <td><span class="claimant-name">John Smith</span></td>
+            <td>Theft</td>
+            <td><span class="amount">$5K</span></td>
+            <td>0.210</td>
+            <td><span class="risk-badge risk-low">LOW</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="dc"><div class="dt">🏆 Fraud Score by Claimant</div><div class="ds">Higher score = higher fraud probability</div>
-      <div class="sl">
-        <div><div class="sh"><span class="sn">Ahmed Hassan</span><span style="font-size:12px;font-weight:700;color:#EF4444;">99.7%</span></div><div class="st"><div class="sf" style="width:99.7%;background:#EF4444;"></div></div></div>
-        <div><div class="sh"><span class="sn">Ahmed Khan</span><span style="font-size:12px;font-weight:700;color:#EF4444;">95.0%</span></div><div class="st"><div class="sf" style="width:95%;background:#EF4444;"></div></div></div>
-        <div><div class="sh"><span class="sn">Carlos Rivera</span><span style="font-size:12px;font-weight:700;color:#EF4444;">91.0%</span></div><div class="st"><div class="sf" style="width:91%;background:#EF4444;"></div></div></div>
-        <div><div class="sh"><span class="sn">Sara Patel</span><span style="font-size:12px;font-weight:700;color:#F59E0B;">76.0%</span></div><div class="st"><div class="sf" style="width:76%;background:#F59E0B;"></div></div></div>
-        <div><div class="sh"><span class="sn">Emma Wilson</span><span style="font-size:12px;font-weight:700;color:#F59E0B;">65.0%</span></div><div class="st"><div class="sf" style="width:65%;background:#F59E0B;"></div></div></div>
-        <div><div class="sh"><span class="sn">John Smith</span><span style="font-size:12px;font-weight:700;color:#10B981;">21.0%</span></div><div class="st"><div class="sf" style="width:21%;background:#10B981;"></div></div></div>
+ 
+    <!-- Score Bars -->
+    <div class="chart-card">
+      <div class="chart-header">
+        <div class="chart-title-wrap">
+          <span class="chart-emoji">🏆</span>
+          <span class="chart-title">Fraud Score by Claimant</span>
+          <div class="chart-sub">Higher score = higher fraud probability</div>
+        </div>
+      </div>
+      <div class="score-list">
+        <div class="score-item">
+          <div class="score-header">
+            <span class="score-name">Ahmed Hassan</span>
+            <span class="score-pct" style="color:#EF4444">99.7%</span>
+          </div>
+          <div class="score-track"><div class="score-fill" style="width:99.7%;background:#EF4444"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-header">
+            <span class="score-name">Ahmed Khan</span>
+            <span class="score-pct" style="color:#EF4444">95.0%</span>
+          </div>
+          <div class="score-track"><div class="score-fill" style="width:95%;background:#EF4444"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-header">
+            <span class="score-name">Carlos Rivera</span>
+            <span class="score-pct" style="color:#EF4444">91.0%</span>
+          </div>
+          <div class="score-track"><div class="score-fill" style="width:91%;background:#EF4444"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-header">
+            <span class="score-name">Sara Patel</span>
+            <span class="score-pct" style="color:#F59E0B">76.0%</span>
+          </div>
+          <div class="score-track"><div class="score-fill" style="width:76%;background:#F59E0B"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-header">
+            <span class="score-name">Emma Wilson</span>
+            <span class="score-pct" style="color:#F59E0B">65.0%</span>
+          </div>
+          <div class="score-track"><div class="score-fill" style="width:65%;background:#F59E0B"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-header">
+            <span class="score-name">Mike Johnson</span>
+            <span class="score-pct" style="color:#F59E0B">44.0%</span>
+          </div>
+          <div class="score-track"><div class="score-fill" style="width:44%;background:#F59E0B"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-header">
+            <span class="score-name">John Smith</span>
+            <span class="score-pct" style="color:#10B981">21.0%</span>
+          </div>
+          <div class="score-track"><div class="score-fill" style="width:21%;background:#10B981"></div></div>
+        </div>
+        <div class="score-item">
+          <div class="score-header">
+            <span class="score-name">Lisa Chen</span>
+            <span class="score-pct" style="color:#10B981">12.0%</span>
+          </div>
+          <div class="score-track"><div class="score-fill" style="width:12%;background:#10B981"></div></div>
+        </div>
       </div>
     </div>
   </div>
+ 
 </div>
-<footer>Built by <span>Momna Ali</span> · InsureIQ AI Claims Intelligence · Claude AI + XGBoost + Snowflake + Flask</footer>
+ 
+<!-- FOOTER -->
+<div class="footer">
+  Built by <span>Momna Ali</span> · InsureIQ AI Claims Intelligence Platform · Claude AI + XGBoost + Snowflake + Flask
+</div>
+ 
 <script>
-new Chart(document.getElementById('bc'),{type:'bar',data:{labels:['Fire Damage','Medical','Theft','Vehicle Accident','Property Damage','Water Damage'],datasets:[{label:'HIGH',data:[2,1,1,1,1,1],backgroundColor:'#0EA5E9',borderRadius:4},{label:'MEDIUM',data:[0,1,1,0,0,0],backgroundColor:'#F59E0B',borderRadius:4},{label:'LOW',data:[0,0,0,1,0,0],backgroundColor:'#10B981',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{stacked:true,grid:{color:'#F1F5F9'},ticks:{color:'#94A3B8',font:{size:11}}},y:{stacked:true,grid:{display:false},ticks:{color:'#475569',font:{size:11}}}}}});
-new Chart(document.getElementById('dc'),{type:'doughnut',data:{labels:['HIGH','MEDIUM','LOW'],datasets:[{data:[5,3,2],backgroundColor:['#EF4444','#F59E0B','#10B981'],borderWidth:3,borderColor:'#FFFFFF'}]},options:{responsive:true,maintainAspectRatio:true,cutout:'68%',plugins:{legend:{display:false}}}});
+  // Date
+  document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US', { weekday:'short', year:'numeric', month:'short', day:'numeric' });
+ 
+  // Bar Chart
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Fire Damage', 'Medical', 'Theft', 'Vehicle Accident', 'Property Damage', 'Water Damage'],
+      datasets: [
+        { label: 'HIGH', data: [2, 1, 1, 1, 1, 1], backgroundColor: '#0EA5E9', borderRadius: 4 },
+        { label: 'MEDIUM', data: [0, 1, 1, 0, 0, 0], backgroundColor: '#F59E0B', borderRadius: 4 },
+        { label: 'LOW', data: [0, 0, 0, 1, 0, 0], backgroundColor: '#10B981', borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw} claim(s)` } }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { color: '#F1F5F9' },
+          ticks: { color: '#94A3B8', font: { size: 11, family: 'Inter' }, stepSize: 1 }
+        },
+        y: {
+          stacked: true,
+          grid: { display: false },
+          ticks: { color: '#475569', font: { size: 11, family: 'Inter' } }
+        }
+      }
+    }
+  });
+ 
+  // Donut Chart
+  new Chart(document.getElementById('donutChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['HIGH', 'MEDIUM', 'LOW'],
+      datasets: [{
+        data: [5, 3, 2],
+        backgroundColor: ['#EF4444', '#F59E0B', '#10B981'],
+        borderWidth: 3,
+        borderColor: '#FFFFFF',
+        hoverOffset: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw} claims (${Math.round(ctx.raw/10*100)}%)` } }
+      }
+    }
+  });
 </script>
 </body>
 </html>
+ 
