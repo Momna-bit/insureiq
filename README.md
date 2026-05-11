@@ -1,5 +1,16 @@
 # 🛡️ InsureIQ — AI Claims Intelligence Platform
 
+
+## 🌐 Live Links
+
+| | Link |
+|---|---|
+| 🛡️ Portfolio | [momna-bit.github.io/insureiq](https://momna-bit.github.io/insureiq) |
+| 📊 Executive Dashboard | [momna-bit.github.io/insureiq/dashboard.html](https://momna-bit.github.io/insureiq/dashboard.html) |
+| 💻 Source Code | [github.com/Momna-bit/insureiq](https://github.com/Momna-bit/insureiq) |
+
+---
+
 > An end-to-end GenAI + ML system that reads insurance claims, detects fraud using RAG-enhanced AI, and delivers real-time decisions through a live dashboard.
 
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](https://python.org)
