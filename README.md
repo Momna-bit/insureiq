@@ -187,12 +187,6 @@ Done:
 - Docker containerization
 - GitHub Actions CI/CD
 
-Coming (already done):
-- [x] Custom HTML Executive Dashboard
-- [x] Live portfolio on GitHub Pages
-
-
-
 
 ---
 
